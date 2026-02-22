@@ -1,0 +1,30 @@
+.main-navigation {
+    border-bottom: solid 2px var(--outline-color);
+    display: flex;
+    align-items: flex-start;
+    font-size: var(--font-size-bigger);
+    font-weight: 800;
+}
+
+.main-navigation__item {
+    color: var(--text-color);
+    margin-right: 40px;
+    padding: var(--vertical-gap) 0;
+}
+
+.main-navigation__item:first-child {
+    margin-right: auto;
+}
+
+.main-navigation__item-count {
+    background:rgba(0,46,255, 0.4);
+    border-radius: 18px;
+    font-weight: 500;
+    padding: 0 10px;
+    width: 1em;
+}
+
+.main-navigation__item--active,
+.main-navigation__additional--active {
+    color: var(--text-color-active);
+}
