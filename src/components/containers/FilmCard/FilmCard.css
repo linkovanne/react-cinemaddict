@@ -95,56 +95,6 @@
     width: 100%;
 }
 
-.film-card__controls-item {
-    background-color: transparent;
-    background-position: center;
-    background-repeat: no-repeat;
-    border: none;
-    border-right: solid 1px var(--outline-color);
-    box-sizing: border-box;
-    flex-basis: 33%;
-    height: 30px;
-    opacity: 1;
-    text-indent: -900em;
-    transition: opacity 0.1s ease-in;
-}
-
-.film-card__controls-item:last-of-type {
-    border-right: 0;
-}
-
-.film-card__controls-item:not(.film-card__controls-item--active):hover {
-    opacity: 0.7;
-}
-
-.film-card__controls-item--add-to-watchlist {
-    background-image: url('../../assets/icons/icon-watchlist.svg');
-    background-size: 17px 15px;
-}
-
-.film-card__controls-item--mark-as-watched {
-    background-image: url('../../assets/icons/icon-watched.svg');
-    background-size: 14px 10px;
-}
-
-.film-card__controls-item--favorite {
-    background-image: url('../../assets/icons/icon-favorite.svg');
-    background-size: 18px 18px;
-}
-
-.film-card__controls-item--active.film-card__controls-item--add-to-watchlist {
-    background-image: url('../../assets/icons/icon-watchlist-active.svg')
-}
-
-.film-card__controls-item--active.film-card__controls-item--mark-as-watched {
-    background-image: url('../../assets/icons/icon-watched-active.svg')
-}
-
-.film-card__controls-item--active.film-card__controls-item--favorite {
-    background-image: url('../../assets/icons/icon-favorite-active.svg')
-}
-
-
 .film-card .film-card__poster {
     bottom: calc(100% - 340px);
 }

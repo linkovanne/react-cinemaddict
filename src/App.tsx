@@ -4,7 +4,7 @@
 import './App.css'
 import AppHeader from "./components/AppHeader/AppHeader.tsx";
 import AppFooter from "./components/AppFooter/AppFooter.tsx";
-import Films from "./pages/Films/Films.tsx";
+import Films from "./components/pages/Films/Films.tsx";
 
 function App() {
     // const [count, setCount] = useState(0)

@@ -1,4 +1,4 @@
-import Films from "../pages/Films/Films.tsx";
+import Films from "../components/pages/Films/Films.tsx";
 
 const routes = [
     {
