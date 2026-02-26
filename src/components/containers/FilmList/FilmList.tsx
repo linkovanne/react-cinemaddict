@@ -1,6 +1,6 @@
 import './FilmList.css'
 import FilmCard from "../FilmCard/FilmCard.tsx";
-import type {IFilm} from "../../../api/interfaces/Film.ts";
+import type {IFilm} from "../../../api/types/Film.ts";
 
 interface FilmListProps {
     title: string;

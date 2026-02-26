@@ -1,6 +1,6 @@
 .footer {
     align-items: center;
-    background: url('../../assets/background.png') no-repeat 50% 0;
+    background: url('../../assets/images/background.png') no-repeat 50% 0;
     display: flex;
     height: 100px;
 }

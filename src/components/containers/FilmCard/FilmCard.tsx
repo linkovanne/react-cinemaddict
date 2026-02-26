@@ -1,5 +1,5 @@
 import './FilmCard.css'
-import type {IFilm} from "../../../api/interfaces/Film.ts";
+import type {IFilm} from "../../../api/types/Film.ts";
 import ControlsItem from "../../elements/ControlsItem/ControlsItem.tsx";
 // import * as dayjs from "dayjs";
 // import duration from 'dayjs/plugin/duration';
@@ -45,7 +45,8 @@ const FilmCard = ({film}: FilmCardProps) => {
                     <span className="film-card__duration">{ duration }H {duration2}m</span>
                     <span className="film-card__genre">{film.film_info.genre[0]}</span>
                 </p>
-                {/*<img src={film.film_info.poster} alt="" className="film-card__poster"/>*/}
+                <img src={film.film_info.poster} alt="" className="film-card__poster"/>
+                {/*<img src={`../../../assets/${film.film_info.poster}`} alt="" className="film-card__poster"/>*/}
                 <p className="film-card__description">{getDescription(film.film_info.description)}</p>
                 <span className="film-card__comments">{film.comments.length} comments</span>
             </a>

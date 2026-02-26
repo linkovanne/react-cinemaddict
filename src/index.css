@@ -38,7 +38,7 @@
 }
 
 html {
-  background: #121213 url('./assets/background.png') no-repeat 60% 0;
+  background: #121213 url('./assets/images/background.png') no-repeat 60% 0;
   display: flex;
   color: var(--text-color);
   font-size: var(--font-size);

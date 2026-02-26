@@ -1,5 +1,5 @@
 import {useMemo} from "react";
-import type {IFilm} from "../api/interfaces/Film.ts";
+import type {IFilm} from "../api/types/Film.ts";
 import type {KeyOf} from "../api/types/common.ts";
 
 export type FilterType = 'all' | KeyOf<IFilm.User>;
