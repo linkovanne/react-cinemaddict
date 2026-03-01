@@ -1,20 +1,25 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+import {ConfigProvider, type ThemeConfig} from 'antd';
+import {theme} from 'antd';
+
 import './App.css'
-import AppHeader from "./components/AppHeader/AppHeader.tsx";
-import AppFooter from "./components/AppFooter/AppFooter.tsx";
+
+import AppHeader from "./components/containers/AppHeader/AppHeader.tsx";
+import AppFooter from "./components/containers/AppFooter/AppFooter.tsx";
 import Films from "./components/pages/Films/Films.tsx";
 
-function App() {
-    // const [count, setCount] = useState(0)
+const {darkAlgorithm, compactAlgorithm} = theme;
 
+const config: ThemeConfig = {
+    algorithm: [darkAlgorithm, compactAlgorithm],
+}
+
+function App() {
     return (
-        <>
+        <ConfigProvider theme={config}>
             <AppHeader/>
             <Films/>
             <AppFooter/>
-        </>
+        </ConfigProvider>
     )
 }
 
