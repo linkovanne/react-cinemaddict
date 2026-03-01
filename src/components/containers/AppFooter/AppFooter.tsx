@@ -1,5 +1,5 @@
 import './AppFooter.css'
-import AppLogo from "../elements/AppLogo/AppLogo.tsx";
+import AppLogo from "../../elements/AppLogo/AppLogo.tsx";
 
 const AppFooter = () => {
     return (

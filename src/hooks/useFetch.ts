@@ -12,7 +12,6 @@ export const useFetch = (callBack: ICallback) => {
             // @ts-ignore
             await callBack(...args)
         } catch (e: any) {
-            debugger
             setError(e?.message || 'Something went wrong');
         } finally {
             setIsLoading(false)

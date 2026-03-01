@@ -1,0 +1,40 @@
+.film-details__new-comment {
+    display: flex;
+    align-items: center;
+    padding-bottom: 60px;
+    position: relative;
+}
+.film-details__add-emoji-label {
+    width: 79px;
+    height: 68px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 55px;
+    line-height: 1;
+    border-radius: 50%;
+    border: dashed 1px #979797;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-right: 14px;
+}
+
+.film-details__comment-label {
+    width: 100%;
+}
+.film-details__comment-input {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: solid 1px #979797;
+    background-color: #f6f6f6;
+    padding: 11px 10px;
+    box-sizing: border-box;
+    font-weight: 600;
+    color: #212126;
+    font-size: 20px;
+    resize: none;
+    outline: none;
+}
+.film-details__comment-input::placeholder {
+    color: #212126;
+}

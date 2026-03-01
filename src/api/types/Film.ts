@@ -1,7 +1,7 @@
 export namespace IFilm {
     export interface Item {
         id: string;
-        comments: string;
+        comments: string[];
         film_info: IFilm.Info;
         user_details: IFilm.User
     }

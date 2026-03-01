@@ -1,0 +1,55 @@
+.comment-card {
+    display: flex;
+    margin-bottom: 24px;
+}
+
+.comment-card__text {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.comment-card__info {
+    margin: 0;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+.comment-card__author {
+    padding-right: 20px;
+    position: relative;
+}
+.comment-card__author::after {
+    content: '';
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #d8d8d8;
+}
+.comment-card__day {
+    padding-right: 20px;
+    position: relative;
+}
+.comment-card__day::after {
+    content: '';
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #d8d8d8;
+}
+.comment-card__delete {
+    padding: 0;
+    color: #687fad;
+    background-color: transparent;
+    outline: none;
+    text-decoration: underline;
+    border: none;
+}
+.comment-card__delete:hover {
+    opacity: 0.7;
+}

@@ -1,7 +1,7 @@
 import './AppHeader.css'
 
-import AppProfile from "../elements/AppProfile/AppProfile.tsx";
-import AppLogo from "../elements/AppLogo/AppLogo.tsx";
+import AppProfile from "../../elements/AppProfile/AppProfile.tsx";
+import AppLogo from "../../elements/AppLogo/AppLogo.tsx";
 
 const AppHeader = () => {
     return (
