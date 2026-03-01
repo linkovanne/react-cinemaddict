@@ -1,9 +1,12 @@
+
 .film-card {
-    flex-basis: 230px;
-    flex-shrink: 0;
-    flex-grow: 0;
-    margin-right: 10px;
-    padding-top: calc(340px + 50px + 10px);
+    --margin-size: 10px;
+
+    /*flex-basis: calc(25% - var(--margin-size));*/
+    /*flex-shrink: 0;*/
+    /*flex-grow: 0;*/
+    margin: 0 calc(var(--margin-size) / 2);
+    padding-top: 33%;
     position: relative;
 }
 
@@ -23,19 +26,6 @@
 
 .film-card__title {
     margin-right: 0.5em;
-}
-
-.film-card__rating,
-.film-card__rating--good {
-    color: var(--text-color-good);
-}
-
-.film-card__rating--average {
-    color: var(--text-color-average);
-}
-
-.film-card__rating--poor {
-    color: var(--text-color-poor);
 }
 
 .film-card__info span {

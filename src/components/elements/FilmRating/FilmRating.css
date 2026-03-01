@@ -1,0 +1,13 @@
+.film-rating {
+    &.good {
+        color: var(--text-color-good);
+    }
+
+    &.average {
+        color: var(--text-color-average);
+    }
+
+    &.poor {
+        color: var(--text-color-poor);
+    }
+}

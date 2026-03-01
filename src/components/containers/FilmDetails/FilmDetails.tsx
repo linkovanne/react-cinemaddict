@@ -4,6 +4,7 @@ import type {IFilm} from "../../../api/types/Film.ts";
 import {formatDuration, formatDate} from "../../../utils/dateTimeFormat.ts";
 import CommentCard from "../CommentCard/CommentCard.tsx";
 import NewCommentForm from "../NewCommentForm/NewCommentForm.tsx";
+import FilmRating from "../../elements/FilmRating/FilmRating.tsx";
 
 interface FilmDetailsProps {
     film: IFilm.Item
@@ -16,12 +17,12 @@ const FilmDetails = ({film, open, setOpen}: FilmDetailsProps) => {
     const duration = formatDuration(film.film_info.duration);
 
     return (
-        <Drawer open={open} closable onClose={() => setOpen(false)} width={'100%'} className="film-details">
+        <Drawer open={open} closable onClose={() => setOpen(false)} size={'100%'} className="film-details">
             <div className="film-details__top-container">
                 <div className="film-details__info-wrap">
                     <div className="film-details__poster">
                         <img className="film-details__poster-img"
-                             src="../../../assets/images/posters/the-great-flamarion.jpg"
+                             src={`../../../assets/${film.film_info.poster}`}
                              alt=""/>
 
                         <p className="film-details__age">{film.film_info.age_rating}+</p>
@@ -35,7 +36,9 @@ const FilmDetails = ({film, open, setOpen}: FilmDetailsProps) => {
                             </div>
 
                             <div className="film-details__rating">
-                                <p className="film-details__total-rating">{film.film_info.total_rating}</p>
+                                <div className="film-details__total-rating">
+                                    <FilmRating rating={film.film_info.total_rating}/>
+                                </div>
                             </div>
                         </div>
 
@@ -55,7 +58,6 @@ const FilmDetails = ({film, open, setOpen}: FilmDetailsProps) => {
                             </tr>
                             <tr className="film-details__row">
                                 <td className="film-details__term">Release Date</td>
-                                {/*<td className="film-details__cell">30 March 1945</td>*/}
                                 <td className="film-details__cell">{releaseDate}</td>
                             </tr>
                             <tr className="film-details__row">
@@ -76,9 +78,7 @@ const FilmDetails = ({film, open, setOpen}: FilmDetailsProps) => {
                             </tbody>
                         </table>
 
-                        <p className="film-details__film-description">
-                            {film.film_info.description}
-                        </p>
+                        <p className="film-details__film-description">{film.film_info.description}</p>
                     </div>
                 </div>
 
