@@ -5,6 +5,10 @@ import {formatDuration, formatDate} from "../../../utils/dateTimeFormat.ts";
 import CommentCard from "../CommentCard/CommentCard.tsx";
 import NewCommentForm from "../NewCommentForm/NewCommentForm.tsx";
 import FilmRating from "../../elements/FilmRating/FilmRating.tsx";
+import {useCallback, useEffect, useState} from "react";
+import {useFetch} from "../../../hooks/useFetch.ts";
+import CommentService from "../../../api/service/CommentService.ts";
+import type {IComment} from "../../../api/types/Comment.ts";
 
 interface FilmDetailsProps {
     film: IFilm.Item
@@ -15,6 +19,18 @@ interface FilmDetailsProps {
 const FilmDetails = ({film, open, setOpen}: FilmDetailsProps) => {
     const releaseDate = formatDate(film.film_info.release.date, 'DD MMMM YYYY');
     const duration = formatDuration(film.film_info.duration);
+    const [comments, setComments] = useState<IComment.Item[]>([]);
+
+    const fetchFilmsCallback = useCallback(async () => {
+        const response = await CommentService.getCommentList(film.id);
+        setComments(response?.data || [])
+    }, []);
+
+    const {fetch, isLoading, error} = useFetch(fetchFilmsCallback)
+
+    useEffect(() => {
+        fetch();
+    }, [fetch])
 
     return (
         <Drawer open={open} closable onClose={() => setOpen(false)} size={'100%'} className="film-details">
@@ -100,14 +116,26 @@ const FilmDetails = ({film, open, setOpen}: FilmDetailsProps) => {
 
             <div className="film-details__bottom-container">
                 <section className="film-details__comments-wrap">
-                    <h3 className="film-details__comments-title">Comments <span
-                        className="film-details__comments-count">{film.comments.length}</span></h3>
+                    {
+                        isLoading
+                            ? <div>Loading...</div>
+                            : error
+                                ? <div>Failed to load comments</div>
+                                : (<>
+                                    <h3 className="film-details__comments-title">Comments {film.comments.length}</h3>
 
-                    <div className="film-details__comments-list">
-                        {film.comments.map(c => <CommentCard key={c}/>)}
-                    </div>
+                                    <div className="film-details__comments-list">
+                                        {
+                                            comments.length === 0
+                                                ? <span>There are no comments yet</span>
+                                                : comments.map(comment => <CommentCard key={comment.id} comment={comment}/>)
+                                        }
+                                    </div>
 
-                    <NewCommentForm/>
+                                    <NewCommentForm/>
+                                </>)
+                    }
+
                 </section>
             </div>
         </Drawer>

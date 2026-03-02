@@ -61,7 +61,7 @@ const FilmCard = ({film}: FilmCardProps) => {
                 <ControlsItem name={'watched'} active={film.user_details.already_watched}>Mark as watched</ControlsItem>
                 <ControlsItem name={'favorite'} active={film.user_details.favorite}>Mark as favorite</ControlsItem>
             </div>
-            <FilmDetails film={film} open={open} setOpen={setOpen}/>
+            {open && <FilmDetails key={film.id} film={film} open={open} setOpen={setOpen}/>}
         </article>
     );
 };

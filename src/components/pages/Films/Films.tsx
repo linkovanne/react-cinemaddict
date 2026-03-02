@@ -48,15 +48,17 @@ const Films = () => {
 
             <AppSort sort={sort} setSort={setSort}/>
 
-            {
+            <section className="films">{
                 isLoading
-                    ? <EmptyView/>
-                    : <section className="films">
-                        <FilmList title={'All movies. Upcoming'} films={sortedAndFilteredFilms} />
-                        <FilmList title={'Top rated'} type={'extra'} films={topRatedFilms} />
-                        <FilmList title={'Most commented'} type={'extra'} films={mostCommentedFilms} />
-                    </section>
-            }
+                    ? <h2 className="films-list__title">Loading...</h2>
+                    : films.length === 0
+                        ? <EmptyView/>
+                        : <>
+                            <FilmList title={'All movies. Upcoming'} films={sortedAndFilteredFilms}/>
+                            <FilmList title={'Top rated'} type={'extra'} films={topRatedFilms}/>
+                            <FilmList title={'Most commented'} type={'extra'} films={mostCommentedFilms}/>
+                        </>
+            }</section>
         </main>
     );
 };
