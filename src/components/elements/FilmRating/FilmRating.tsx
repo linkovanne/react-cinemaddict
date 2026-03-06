@@ -20,7 +20,7 @@ const FilmRating = ({rating}: FilmRatingProps) => {
     }
 
     return (
-        <p className={getRating()}>{rating}</p>
+        <span className={getRating()}>{rating}</span>
     );
 };
 

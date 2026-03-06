@@ -11,10 +11,6 @@
     padding-bottom: var(--vertical-gap);
 }
 
-.films-list .film-card {
-    margin-top: 50px;
-}
-
 .films-list__show-more {
     background: none;
     border: solid 1px var(--outline-color);
@@ -54,8 +50,4 @@
     position: absolute;
     top: 20px;
     width: 0;
-}
-
-.films-list--extra .films-list__container {
-    padding: var(--vertical-gap) 40px;
 }

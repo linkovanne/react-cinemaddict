@@ -1,5 +1,8 @@
 import './FilmCard.css'
+
 import {useState} from "react";
+import {Card} from 'antd';
+
 import type {IFilm} from "../../../api/types/Film.ts";
 import ControlsItem from "../../elements/ControlsItem/ControlsItem.tsx";
 import FilmDetails from "../FilmDetails/FilmDetails.tsx";
@@ -38,31 +41,42 @@ const FilmCard = ({film}: FilmCardProps) => {
     };
 
     return (
-        <article className="film-card" style={{background: `url('./${film.film_info.poster}')`}}>
-            <a className="film-card__link">
-                <h3 className="film-card__title" onClick={() => showDrawer()}>{film.film_info.title}</h3>
-                <div className="film-card__rating">
-                    <FilmRating rating={film.film_info.total_rating}/>
-                </div>
-                {/*<p className="film-card__rating">{film.film_info.total_rating}</p>*/}
-                <p className="film-card__info">
-                    <span className="film-card__year">{releaseYear}</span>
-                    {/*<span className="film-card__duration">{ dayjs.duration(film.film_info.duration, 'minutes').format('H[h] mm[m]') }</span>*/}
-                    <span className="film-card__duration">{duration}</span>
-                    <span className="film-card__genre">{film.film_info.genre[0]}</span>
-                </p>
-                {/*<img src={film.film_info.poster} alt="" className="film-card__poster"/>*/}
-                {/*<img src={`../../../assets/${film.film_info.poster}`} alt="" className="film-card__poster"/>*/}
-                <p className="film-card__description">{getDescription(film.film_info.description)}</p>
-                <span className="film-card__comments">{film.comments.length} comments</span>
-            </a>
-            <div className="film-card__controls">
-                <ControlsItem name={'watchlist'} active={film.user_details.watchlist}>Add to watchlist</ControlsItem>
-                <ControlsItem name={'watched'} active={film.user_details.already_watched}>Mark as watched</ControlsItem>
+        <Card
+            className="film-card"
+            style={{background: `url('./${film.film_info.poster}')`}}
+            actions={[
+                <ControlsItem name={'watchlist'} active={film.user_details.watchlist}>Add to watchlist</ControlsItem>,
+                <ControlsItem name={'watched'} active={film.user_details.already_watched}>Mark as
+                    watched</ControlsItem>,
                 <ControlsItem name={'favorite'} active={film.user_details.favorite}>Mark as favorite</ControlsItem>
-            </div>
+            ]}
+        >
+            {/*<div className="film-card__controls">*/}
+            {/*    <ControlsItem name={'watchlist'} active={film.user_details.watchlist}>Add to watchlist</ControlsItem>*/}
+            {/*    <ControlsItem name={'watched'} active={film.user_details.already_watched}>Mark as watched</ControlsItem>*/}
+            {/*    <ControlsItem name={'favorite'} active={film.user_details.favorite}>Mark as favorite</ControlsItem>*/}
+            {/*</div>*/}
+            {/*<div className="film-card__link">*/}
+            <h3 className="film-card__title" onClick={() => showDrawer()}>
+                {film.film_info.title}
+                <span className="film-card__rating">
+                    <FilmRating rating={film.film_info.total_rating}/>
+                </span>
+            </h3>
+            {/*<p className="film-card__rating">{film.film_info.total_rating}</p>*/}
+            <p className="film-card__info">
+                <span className="film-card__year">{releaseYear}</span>
+                {/*<span className="film-card__duration">{ dayjs.duration(film.film_info.duration, 'minutes').format('H[h] mm[m]') }</span>*/}
+                <span className="film-card__duration">{duration}</span>
+                <span className="film-card__genre">{film.film_info.genre[0]}</span>
+            </p>
+            {/*<img src={film.film_info.poster} alt="" className="film-card__poster"/>*/}
+            {/*<img src={`../../../assets/${film.film_info.poster}`} alt="" className="film-card__poster"/>*/}
+            <p className="film-card__description">{getDescription(film.film_info.description)}</p>
+            <span className="film-card__comments">{film.comments.length} comments</span>
+            {/*</div>*/}
             {open && <FilmDetails key={film.id} film={film} open={open} setOpen={setOpen}/>}
-        </article>
+        </Card>
     );
 };
 

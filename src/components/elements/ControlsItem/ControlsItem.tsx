@@ -11,9 +11,10 @@ interface ControlsItemProps {
     stroke?: string;
 }
 
-const ControlsItem = ({children, name, active = false, width = 16, height = 16, viewBox = '0 0 16 16', stroke = undefined}: ControlsItemProps) => {
+// children,
+const ControlsItem = ({name, active = false, width = 16, height = 16, viewBox = '0 0 16 16', stroke = undefined}: ControlsItemProps) => {
     return (
-        <button className="controls-item" type="button">
+        // <Button className="controls-item">
             <svg fill={active ? '#ffe800' : '#7C7C7C'} stroke={stroke} height={height} width={width} view-box={viewBox} aria-hidden={true}>
                 <symbol id="watchlist" viewBox="0 0 14 10">
                     <g fillRule="nonzero">
@@ -28,8 +29,8 @@ const ControlsItem = ({children, name, active = false, width = 16, height = 16, 
                 </symbol>
             <use href={`#${name}`} />
         </svg>
-            {children}
-        </button>
+            // {children}
+        // </Button>
     );
 };
 

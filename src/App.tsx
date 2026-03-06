@@ -1,5 +1,4 @@
-import {ConfigProvider, type ThemeConfig} from 'antd';
-import {theme} from 'antd';
+import {ConfigProvider, type ThemeConfig, theme, Layout} from 'antd';
 
 import './App.css'
 
@@ -16,9 +15,16 @@ const config: ThemeConfig = {
 function App() {
     return (
         <ConfigProvider theme={config}>
-            <AppHeader/>
-            <Films/>
-            <AppFooter/>
+            <Layout style={{minHeight: "100vh"}}>
+                <Layout.Content>
+                    <div className="app-content">
+
+                        <AppHeader/>
+                        <Films/>
+                        <AppFooter/>
+                    </div>
+                </Layout.Content>
+            </Layout>
         </ConfigProvider>
     )
 }

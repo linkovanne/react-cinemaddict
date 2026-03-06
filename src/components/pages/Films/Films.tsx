@@ -1,5 +1,5 @@
 import './Films.css'
-import MainNavigation from "../../elements/MainNavigation/MainNavigation.tsx";
+import FilmFilters, {type IFilmFilter} from "../../elements/FilmFilters/FilmFilters.tsx";
 import AppSort from "../../elements/AppSort/AppSort.tsx";
 import FilmList from "../../containers/FilmList/FilmList.tsx";
 import {useCallback, useEffect, useMemo, useState} from "react";
@@ -26,6 +26,26 @@ const Films = () => {
 
         return commented.slice(0, 2)
     }, [films]);
+    const filters = useMemo<IFilmFilter[]>(() => {
+        let groups = [
+            {label: 'Watchlist', value: 'watchlist', count: 0},
+            {label: 'History', value: 'already_watched', count: 0},
+            {label: 'Favorites', value: 'favorite', count: 0},
+        ]
+
+        films.map(film => {
+            Object.entries(film.user_details).forEach(([key, value]) => {
+                let group = groups.find(g => g.value === key);
+                const restGroups = groups.filter(g => g.value !== key);
+                if (group && !!value) {
+                    group = {...group, count: group.count+1}
+                    groups = [...restGroups, group];
+                }
+            })
+        })
+
+        return groups
+    }, [films])
 
     const fetchFilmsCallback = useCallback(async () => {
         const response = await FilmService.getFilmList();
@@ -44,7 +64,7 @@ const Films = () => {
 
     return (
         <main className="main">
-            <MainNavigation filter={filter} setFilter={setFilter} />
+            <FilmFilters filters={filters} filter={filter} setFilter={setFilter} />
 
             <AppSort sort={sort} setSort={setSort}/>
 
