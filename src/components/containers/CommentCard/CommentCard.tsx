@@ -1,5 +1,5 @@
 import './CommentCard.css'
-import {Button} from "antd";
+import {Avatar, Button} from "antd";
 import type {IComment} from "../../../api/types/Comment.ts";
 import {formatDate} from "../../../utils/dateTimeFormat.ts";
 
@@ -13,7 +13,7 @@ const CommentCard = ({comment}: CommentCardProps) => {
     return (
         <div className="comment-card">
             <span className="comment-card__emoji">
-              <img src="./images/emoji/smile.png" width="55" height="55" alt="emoji-smile"/>
+              <Avatar src={`src/assets/images/emoji/${comment.emotion}.png`} size={55} alt={`emoji-${comment.emotion}`}/>
             </span>
             <div>
                 <p className="comment-card__text">{comment.comment}</p>

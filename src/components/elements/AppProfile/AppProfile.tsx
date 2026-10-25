@@ -1,10 +1,13 @@
 import './AppProfile.css'
+import avatarUrl from '@/assets/images/bitmap@2x.png'
+import { Avatar } from 'antd'
 
 const AppProfile = () => {
+
     return (
         <div className="profile">
             <p className="profile__rating">Movie Buff</p>
-            <img className="profile__avatar" src="../../../assets/images/bitmap@2x.png" alt="Avatar" width="35" height="35"/>
+            <Avatar className="profile__avatar" size={35} src={avatarUrl} alt="Avatar"/>
         </div>
     );
 };

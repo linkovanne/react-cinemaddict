@@ -74,9 +74,9 @@ const Films = () => {
                     : films.length === 0
                         ? <EmptyView/>
                         : <>
-                            <FilmList title={'All movies. Upcoming'} films={sortedAndFilteredFilms}/>
-                            <FilmList title={'Top rated'} type={'extra'} films={topRatedFilms}/>
-                            <FilmList title={'Most commented'} type={'extra'} films={mostCommentedFilms}/>
+                            <FilmList title={'All movies. Upcoming'} films={sortedAndFilteredFilms} rowLength={6}/>
+                            <FilmList title={'Top rated'} type={'extra'} films={topRatedFilms} rowLength={12}/>
+                            <FilmList title={'Most commented'} type={'extra'} films={mostCommentedFilms} rowLength={12}/>
                         </>
             }</section>
         </main>

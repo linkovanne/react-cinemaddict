@@ -1,10 +1,25 @@
+import { Button } from 'antd';
+
+import type {SortType} from '@/hooks/useFilms.ts';
+
 import './AppSort.css'
-import type {SortType} from "../../../hooks/useFilms.ts";
+import cx from 'classnames';
 
 interface ISortProps {
     sort: SortType;
     setSort: (sort: SortType) => void;
 }
+
+interface ISortItem {
+    name: string;
+    value: SortType;
+}
+
+const FILM_LIST_SORT: ISortItem[] = [
+    {name: 'Sort by default', value: 'default'},
+    {name: 'Sort by date', value: 'release_date'},
+    {name: 'Sort by rating', value: 'total_rating'},
+]
 
 const AppSort = ({sort, setSort}: ISortProps) => {
     const onSort = (e: any, value: SortType) => {
@@ -14,21 +29,17 @@ const AppSort = ({sort, setSort}: ISortProps) => {
     }
     return (
         <ul className="sort">
+            {FILM_LIST_SORT.map((item) => (
             <li>
-                <a className={["sort__button", sort === 'default' && "sort__button--active"].join(' ')} onClick={(e) => onSort(e, 'default')}>
-                    Sort by default
-                </a>
+                <Button 
+                    type={"link"} 
+                    className={cx(['sort__button', {
+                        ['sort__button--active']: sort === item.value,
+                    }])} 
+                    onClick={(e) => onSort(e, item.value)}
+                >{item.name}</Button>
             </li>
-            <li>
-                <a className={["sort__button", sort === 'release_date' && "sort__button--active"].join(' ')} onClick={(e) => onSort(e, 'release_date')}>
-                    Sort by date
-                </a>
-            </li>
-            <li>
-                <a className={["sort__button", sort === 'total_rating' && "sort__button--active"].join(' ')} onClick={(e) => onSort(e, 'total_rating')}>
-                    Sort by rating
-                </a>
-            </li>
+            ))}
         </ul>
     );
 };

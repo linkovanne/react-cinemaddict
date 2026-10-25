@@ -10,6 +10,9 @@ const {darkAlgorithm, compactAlgorithm} = theme;
 
 const config: ThemeConfig = {
     algorithm: [darkAlgorithm, compactAlgorithm],
+    // token: {
+    //     colorLinkActive: '#fadb14',
+    // },
 }
 
 function App() {
