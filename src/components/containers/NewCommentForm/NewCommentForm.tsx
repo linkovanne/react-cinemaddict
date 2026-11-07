@@ -1,4 +1,5 @@
 import './NewCommentForm.css'
+
 import {Form, type FormProps, Input} from 'antd';
 import CommentEmojiSelector from "../../elements/CommentEmojiSelector/CommentEmojiSelector.tsx";
 import {useState} from "react";
@@ -23,21 +24,24 @@ const NewCommentForm = () => {
 
     return (
         <Form className="film-details__new-comment" onValuesChange={onFormLayoutChange}>
-            <div className="film-details__add-emoji-label"></div>
+            <div className="film-details__add-emoji-label">
+                <img src={comment.icon} alt=""/>
+            </div>
 
             {/*<label className="film-details__comment-label">*/}
-            <Form.Item name="text">
+            <Form.Item name="text" className={"film-details__input-wrap"} style={{flex:'1 1 100%'}}>
                 <Input.TextArea
                     value={comment.text}
-                    rows={2}
-                    className="film-details__comment-input"
+                    rows={4}
+
+                    className={"film-details__comment-input"}
                     placeholder="Select reaction below and write comment here"
                     name="comment"
                 />
             </Form.Item>
             {/*</label>*/}
 
-            <CommentEmojiSelector/>
+            <CommentEmojiSelector className={'film-details__emoji-selector'} setEmoji={(icon) => setComment({...comment, icon})} />
         </Form>
     );
 };

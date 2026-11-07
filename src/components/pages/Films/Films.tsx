@@ -1,13 +1,13 @@
 import './Films.css'
-import FilmFilters, {type IFilmFilter} from "../../elements/FilmFilters/FilmFilters.tsx";
-import AppSort from "../../elements/AppSort/AppSort.tsx";
-import FilmList from "../../containers/FilmList/FilmList.tsx";
+import FilmFilters, {type IFilmFilter} from "@/components/elements/FilmFilters/FilmFilters.tsx";
+import AppSort from "@/components/elements/AppSort/AppSort.tsx";
+import FilmList from "@/components/containers/FilmList/FilmList.tsx";
 import {useCallback, useEffect, useMemo, useState} from "react";
-import FilmService from "../../../api/service/FilmService.ts";
-import {useFetch} from "../../../hooks/useFetch.ts";
-import type {IFilm} from "../../../api/types/Film.ts";
-import EmptyView from "../../containers/EmptyView/EmptyView.tsx";
-import {type FilterType, type SortType, useFilms} from "../../../hooks/useFilms.ts";
+import FilmService from "@/api/service/FilmService.ts";
+import {useFetch} from "@/hooks/useFetch.ts";
+import type {IFilm} from "@/api/types/Film.ts";
+import EmptyView from "@/components/containers/EmptyView/EmptyView.tsx";
+import {type FilterType, type SortType, useFilms} from "@/hooks/useFilms.ts";
 
 const Films = () => {
     const [films, setFilms] = useState<IFilm.Item[]>([]);
@@ -47,15 +47,18 @@ const Films = () => {
         return groups
     }, [films])
 
-    const fetchFilmsCallback = useCallback(async () => {
-        const response = await FilmService.getFilmList();
+    const fetchFilmsCallback = useCallback(async (signal: AbortSignal) => {
+        const response = await FilmService.getFilmList(signal);
         setFilms(response?.data || [])
     }, []);
 
     const {fetch, isLoading, error} = useFetch(fetchFilmsCallback)
 
     useEffect(() => {
-        fetch();
+        const controller = new AbortController();
+        void fetch(controller.signal);
+
+        return () => controller.abort();
     }, [fetch])
 
     if (error) {

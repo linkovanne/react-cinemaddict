@@ -9,8 +9,9 @@ export default class FilmService {
     //     private options: AppClientOptions
     // ) {}
 
-    static async getFilmList() {
+    static async getFilmList(signal?: AbortSignal) {
         return await axios.get<IFilm.Item[]>(`${END_POINT}/movies`, {
+            signal,
             headers: {
                 Authorization: AUTHORIZATION,
             }

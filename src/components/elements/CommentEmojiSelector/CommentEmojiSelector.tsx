@@ -1,31 +1,31 @@
 import './CommentEmojiSelector.css'
 
-const CommentEmojiSelector = () => {
+import cx from 'classnames';
+
+interface ICommentEmojiSelectorProps {
+    className: string;
+    setEmoji: (icon: string) => void
+}
+
+const CommentEmojiSelector = ({className, setEmoji}: ICommentEmojiSelectorProps) => {
+    const emogi_map = [
+        'src/assets/images/emoji/smile.png',
+        'src/assets/images/emoji/sleeping.png',
+        'src/assets/images/emoji/puke.png',
+        'src/assets/images/emoji/angry.png',
+    ]
+
     return (
-        <div className="comment-emoji-selector">
-            <input className="comment-emoji-selector_item visually-hidden" name="comment-emoji-selector"
-                   type="radio" id="emoji-smile" value="smile"/>
-            <label className="comment-emoji-selector_label" htmlFor="emoji-smile">
-                <img src="./emoji/smile.png" width="30" height="30" alt="emoji"/>
-            </label>
-
-            <input className="comment-emoji-selector_item visually-hidden" name="comment-emoji-selector"
-                   type="radio" id="emoji-sleeping" value="sleeping"/>
-            <label className="comment-emoji-selector_label" htmlFor="emoji-sleeping">
-                <img src="./emoji/sleeping.png" width="30" height="30" alt="emoji"/>
-            </label>
-
-            <input className="comment-emoji-selector_item visually-hidden" name="comment-emoji-selector"
-                   type="radio" id="emoji-puke" value="puke"/>
-            <label className="comment-emoji-selector_label" htmlFor="emoji-puke">
-                <img src="./emoji/puke.png" width="30" height="30" alt="emoji"/>
-            </label>
-
-            <input className="comment-emoji-selector_item visually-hidden" name="comment-emoji-selector"
-                   type="radio" id="emoji-angry" value="angry"/>
-            <label className="comment-emoji-selector_label" htmlFor="emoji-angry">
-                <img src="./emoji/angry.png" width="30" height="30" alt="emoji"/>
-            </label>
+        <div className={cx("comment-emoji-selector", className)}>
+            {emogi_map.map(emoji => (
+                <>
+                    {/*<input className="comment-emoji-selector_item visually-hidden" name="comment-emoji-selector"*/}
+                    {/*       type="radio" id="emoji-smile" value="smile"/>*/}
+                    <div className="comment-emoji-selector_label" onClick={() => setEmoji(emoji)}>
+                        <img src={emoji} width="30" height="30" alt="emoji"/>
+                    </div>
+                </>
+            ))}
         </div>
     );
 };

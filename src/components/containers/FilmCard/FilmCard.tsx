@@ -1,10 +1,10 @@
 import './FilmCard.css'
 
 import {useState} from "react";
-import type {IFilm} from "../../../api/types/Film.ts";
+import type {IFilm} from "@/api/types/Film.ts";
 import ControlsItem from "../../elements/ControlsItem/ControlsItem.tsx";
 import FilmDetails from "../FilmDetails/FilmDetails.tsx";
-import {formatDate, formatDuration} from "../../../utils/dateTimeFormat.ts";
+import {formatDate, formatDuration} from "@/utils/dateTimeFormat.ts";
 import FilmRating from "../../elements/FilmRating/FilmRating.tsx";
 import { Card } from 'antd';
 
@@ -65,7 +65,7 @@ const FilmCard = ({film}: FilmCardProps) => {
                 <p className="film-card__description">{getDescription(film.film_info.description)}</p>
                 <span className="film-card__comments">{film.comments.length} comments</span>
             </div>
-            <FilmDetails key={film.id} film={film} open={open} setOpen={setOpen}/>
+            {open && <FilmDetails key={film.id} film={film} open={open} setOpen={setOpen}/>}
         </Card>
     );
 };

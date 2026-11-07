@@ -1,14 +1,14 @@
 import './FilmDetails.css'
 import {Drawer} from "antd";
-import type {IFilm} from "../../../api/types/Film.ts";
-import {formatDuration, formatDate} from "../../../utils/dateTimeFormat.ts";
-import CommentCard from "../CommentCard/CommentCard.tsx";
-import NewCommentForm from "../NewCommentForm/NewCommentForm.tsx";
-import FilmRating from "../../elements/FilmRating/FilmRating.tsx";
+import type {IFilm} from "@/api/types/Film.ts";
+import {formatDuration, formatDate} from "@/utils/dateTimeFormat.ts";
+import CommentCard from "@/components/containers/CommentCard/CommentCard.tsx";
+import NewCommentForm from "@/components/containers/NewCommentForm/NewCommentForm.tsx";
+import FilmRating from "@/components/elements/FilmRating/FilmRating.tsx";
 import {useCallback, useEffect, useState} from "react";
-import {useFetch} from "../../../hooks/useFetch.ts";
-import CommentService from "../../../api/service/CommentService.ts";
-import type {IComment} from "../../../api/types/Comment.ts";
+import {useFetch} from "@/hooks/useFetch.ts";
+import CommentService from "@/api/service/CommentService.ts";
+import type {IComment} from "@/api/types/Comment.ts";
 
 interface FilmDetailsProps {
     film: IFilm.Item
@@ -21,15 +21,18 @@ const FilmDetails = ({film, open, setOpen}: FilmDetailsProps) => {
     const duration = formatDuration(film.film_info.duration);
     const [comments, setComments] = useState<IComment.Item[]>([]);
 
-    const fetchFilmsCallback = useCallback(async () => {
-        const response = await CommentService.getCommentList(film.id);
+    const fetchFilmsCallback = useCallback(async (signal: AbortSignal) => {
+        const response = await CommentService.getCommentList(signal, film.id);
         setComments(response?.data || [])
     }, []);
 
     const {fetch, isLoading, error} = useFetch(fetchFilmsCallback)
 
     useEffect(() => {
-        fetch();
+        const controller = new AbortController();
+        void fetch(controller.signal);
+
+        return () => controller.abort();
     }, [fetch])
 
     return (
@@ -38,7 +41,7 @@ const FilmDetails = ({film, open, setOpen}: FilmDetailsProps) => {
                 <div className="film-details__info-wrap">
                     <div className="film-details__poster">
                         <img className="film-details__poster-img"
-                             src={`../../../assets/${film.film_info.poster}`}
+                             src={`src/assets/${film.film_info.poster}`}
                              alt=""/>
 
                         <p className="film-details__age">{film.film_info.age_rating}+</p>
